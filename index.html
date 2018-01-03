@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Webduino PM2.5</title>
+    <link rel="stylesheet" type="text/css" href="css/pm25.css">
+    <link rel="stylesheet" type="text/css" href="css/slider.css">
+    <script src="https://blocklypro.webduino.io/components/jquery/dist/jquery.min.js"></script>
+    <script src="https://webduino.io/components/webduino-js/dist/webduino-all.min.js"></script>
+    <script src="https://blockly.webduino.io/webduino-blockly.js"></script>
+    <script src="https://blockly.webduino.io/lib/firebase.js"></script>
+    <script src="https://blockly.webduino.io/lib/runtime.min.js"></script>
+    <script src="https://blocklypro.webduino.io/components/webduino-module-pm25/G3.js"></script>
+    <script src="https://blocklypro.webduino.io/components/webduino-module-pm25/G3-blockly.js"></script>
+    <script src="js/slider.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid section1">
+        <img src="img/webduino-logo.png" alt="" class="logo">
+        <div class="pm25-information">
+            <p class="title">PM2.5 濃度 ( μg/m3 )</p>
+            <span id="demo-area-01-show" class="pm25-value">0</span>
+            <br>
+            <span class="pm25-status">空氣品質：良好</span>        
+        </div>
+    </div>
+    <div class="container-fluid section2">
+        <p>PM2.5 細懸浮微粒偵測</p>
+    </div>
+    
+    <script>
+    (function() {
+        
+        var g3;
+
+        boardReady({ board: 'Smart', device: '10vVvJDV', transport: 'mqtt' }, function(board) {
+            board.systemReset();
+            board.samplingInterval = 250;
+            g3 = getG3(board, 14, 3);
+            document.getElementById("demo-area-01-show").style.fontSize = 5 + "em";
+            g3.read(function(evt) {
+                document.getElementById("demo-area-01-show").innerHTML = ([g3.pm25].join(''));
+            }, 1000);
+        });
+    }());
+    </script>
+</body>
+
+</html>
