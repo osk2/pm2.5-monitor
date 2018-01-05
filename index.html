@@ -18,11 +18,14 @@
 
 <body>
     <section>
-        <ul id="pages" class="view-container" style="">
-            <li id="pageA" style="left:;display:block; overflow: scroll;">
+        <ul id="pages" class="view-container" style=" background-color: #f3f3f3">
+            <li id="pageA" style="display: block; overflow: scroll;">
                 <div class="container-fluid">
-                <a id="btnNext1" style="font-size: 3em; text-align: center;">Go</a>
-            </div>
+                    <img src="img/air.png" alt="" class="air">
+                    <div style="padding: 30px">
+                        <button id="btnNext1" class="go">來測一下吧</button>
+                    </div>
+                </div>
             </li>
             <li id="pageB" class="page-container" style="left:100%; display:none; overflow: scroll;">
                 <div class="container-fluid section1" id="bgc">
@@ -54,7 +57,74 @@
                     </div>
                     <div class="setting-content">
                         <h4>細懸浮微粒指標對照表</h4>
-                        <img src="img/pm25.jpg" alt="" class="pm25">
+                        <p style="margin-bottom: 0;">PM2.5 濃度 (μg/m3) 及活動建議</p>
+                        <div class="row pm25-chart">
+                            <div class="col-xs-12 level-content">
+                                <div class="col-xs-4 level">
+                                    <div class="l1"><p>0~11</p></div>
+                                    <div class="l2"><p>12~23</p></div>
+                                    <div class="l3"><p>24~35</p></div>
+                                </div>
+                                <div class="col-xs-8 level-discription">
+                                    <div>
+                                        <ul>
+                                            <li>空氣品質：良好</li>
+                                            <li>一般民眾：正常戶外活動</li>
+                                            <li>敏感族群：正常戶外活動</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 level-content2">
+                                <div class="col-xs-4 level">
+                                    <div class="l4"><p>36~41</p></div>
+                                    <div class="l5"><p>42~47</p></div>
+                                    <div class="l6"><p>48~53</p></div>
+                                </div>
+                                <div class="col-xs-8 level-discription">
+                                    <div>
+                                        <ul>
+                                            <li>空氣品質：尚可</li>
+                                            <li>一般民眾：正常戶外活動</li>
+                                            <li>敏感族群：減少體力消耗及戶外活動</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 level-content3">
+                                <div class="col-xs-4 level">
+                                    <div class="l7"><p>54~58</p></div>
+                                    <div class="l8"><p>59~64</p></div>
+                                    <div class="l9"><p>65~70</p></div>
+                                </div>
+                                <div class="col-xs-8 level-discription">
+                                    <div>
+                                        <ul>
+                                            <li>空氣品質：不健康</li>
+                                            <li>一般民眾：減少戶外活動</li>
+                                            <li>敏感族群：減少體力消耗，特別是戶外活動</li>
+                                            <li>氣喘族群：需增加使用吸入劑頻率</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 level-content4">
+                                <div class="col-xs-4 level">
+                                    <div class="l10"><p>71 以上</p></div>
+                                </div>
+                                <div class="col-xs-8 level-discription">
+                                    <div>
+                                        <ul>
+                                            <li>空氣品質：危害</li>
+                                            <li>一般民眾：減少體力消耗，特別是戶外活動</li>
+                                            <li>敏感族群：避免體力消耗及戶外活動</li>
+                                            <li>氣喘族群：需增加使用吸入劑頻率</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <img src="img/pm25.jpg" alt="" class="pm25"> -->
                     </div>
                 </div>
             </li>

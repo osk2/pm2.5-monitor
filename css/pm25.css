@@ -21,6 +21,26 @@ a {
 
 #demo-area-01-show { font-size: 60px; pointer-events: auto!important; }
 
+.air {
+	display: block;
+	width: 100%;
+	padding: 30px;
+	margin-top: 30px;
+}
+.go {
+	padding: 10px 30px;
+	display: block;
+	width: 80%;
+	text-align: center;
+  line-height: 2;
+  margin-bottom: 10px;
+  margin: auto;
+  font-size: 18px;  /*16px=1em*/
+  background-color: #48b04b;  
+  color: #F9FDFF; 
+  border-radius: 6px;
+  box-shadow: 0 4px 0 #399639;  /*按鈕陰影,值分別為:x軸位移 y軸位移 擴散 顏色*/
+}
 .section1 {
 	background-color: #48B04B;
 	height: 90vh;
@@ -92,13 +112,120 @@ a {
 	display: block;
 	width: 100%;
 }
+.pm25-chart {
+	padding: 12px;
+}
+.level-content {
+	padding: 0;
+	background: linear-gradient(270deg, #89C541 0%, #388E3C 100%); 
+  background: -moz-linear-gradient(270deg, #89C541 0%, #388E3C 100%); 
+  background: -webkit-linear-gradient(270deg, #89C541 0%, #388E3C 100%); 
+  background: -o-linear-gradient(270deg, #89C541 0%, #388E3C 100%);
+  color: #fff;
+  text-align: center;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.level-content2 {
+	padding: 0;
+	background: linear-gradient(270deg, #fcd700 0%, #ff9800 100%); 
+  background: -moz-linear-gradient(270deg, #fcd700 0%, #ff9800 100%); 
+  background: -webkit-linear-gradient(270deg, #fcd700 0%, #ff9800 100%); 
+  background: -o-linear-gradient(270deg, #fcd700 0%, #ff9800 100%);
+  color: #fff;
+  text-align: center;
+}
+.level-content3 {
+	padding: 0;
+	background: linear-gradient(270deg, #ff5252 0%, #d32f2f 100%); 
+  background: -moz-linear-gradient(270deg, #ff5252 0%, #d32f2f 100%); 
+  background: -webkit-linear-gradient(270deg, #ff5252 0%, #d32f2f 100%); 
+  background: -o-linear-gradient(270deg, #ff5252 0%, #d32f2f 100%);
+  color: #fff;
+  text-align: center;
+}
+.level-content4 {
+	padding: 0;
+	background: linear-gradient(270deg, #9d1cb2 0%, #721c9d 100%); 
+  background: -moz-linear-gradient(270deg, #9d1cb2 0%, #721c9d 100%); 
+  background: -webkit-linear-gradient(270deg, #9d1cb2 0%, #721c9d 100%); 
+  background: -o-linear-gradient(270deg, #9d1cb2 0%, #721c9d 100%);
+  color: #fff;
+  text-align: center;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.level {
+	padding: 0;
+}
+.level p {
+	padding: 25px 3px;
+	margin-bottom: 0;
+}
+.l1 {
+	background-color: #89c541;
+	border-top-left-radius: 5px;
+}
+.l2 {
+	background-color: #48b04b;
+}
+.l3 {
+	background-color: #388e3c;
+}
+.l4 {
+	background-color: #fcd700;
+}
+.l5 {
+	background-color: #ffc107;
+}
+.l6 {
+	background-color: #ff9800;
+}
+.l7 {
+	background-color: #ff5252;
+}
+.l8 {
+	background-color: #f44336;
+}
+.l9 {
+	background-color: #d32f2f;
+}
+.l10 {
+	background-color: #9d1cb2;
+	padding: 70px 3px;
+	border-bottom-left-radius: 5px;
+}
+.level-discription div {
+	text-align: left;
+	padding-top: 10px;
+	margin-bottom: 0;
+}
+.level-discription li {
+	margin-top: 5px;
+}
+
 #pageBack {
 	width: 30px;
 	padding-top: 20px;
 	margin-bottom: 5px;
 	/*float: left;*/
 }
-
+@media (min-width: 700px) {
+	.air {
+		width: 50%;
+		margin: auto;
+	}
+}
+@media (min-width: 1000px) {
+	.air {
+		width: 40%;
+		margin: auto;
+	}
+	.go {
+		width: 50%;
+		margin: auto;
+	}
+}
 @media (max-width: 700px) {
 	.logo {
 		margin-left: 10px;
