@@ -44,11 +44,10 @@
             </li>
             <li id="pageC" class="page-container" style="left:200%;display:none; background-color: #ffffff; overflow: scroll;">
                 <div class="container-fluid setting">
-                    <img src="img/dot.png" alt="" id="pageBack">
-                    
+                    <img src="img/back.png" alt="" id="pageBack">
                     <div class="setting-content">
                         <h4>細懸浮微粒傳感器</h4>
-                        <p>接收腳位：14</p>
+                        <p>接收腳位：14 ( TXD &rarr; 14 )</p>
                         <h4>Webduino Smart 開發板 ID</h4>
                         <input type="text" id="deviceId">
                         
@@ -124,7 +123,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <img src="img/pm25.jpg" alt="" class="pm25"> -->
                     </div>
                 </div>
             </li>
@@ -148,7 +146,6 @@
                 board.samplingInterval = 250;
                 document.getElementById("ready").innerHTML = (['連線狀態：已連線'].join(''));
                 g3 = getG3(board, 14, 3);
-                // document.getElementById("demo-area-01-show").style.fontSize = 30 + "px";
                 g3.read(function(evt) {
                     if (g3.pm25 <= 11) {
                         document.getElementById("demo-area-01-show").innerHTML = ([g3.pm25].join(''));
@@ -197,63 +194,7 @@
                     }
                 }, 1000);
             });
-        });
-
-        // boardReady({ board: 'Smart', device: '10vVvJDV', transport: 'mqtt' },
-        //     function(board) {
-        //         board.systemReset();
-        //         board.samplingInterval = 250;
-        //         g3 = getG3(board, 14, 3);
-        //         // document.getElementById("demo-area-01-show").style.fontSize = 30 + "px";
-        //         g3.read(function(evt) {
-        //             if (g3.pm25 <= 11) {
-        //                 document.getElementById("demo-area-01-show").innerHTML = ([g3.pm25].join(''));
-        //                 document.getElementById("123").innerHTML = (['空氣品質：良好'].join(''));
-        //                 document.getElementById("bgc").style.backgroundColor = '#89C541';
-        //             } else if (g3.pm25 <= 23) {
-        //                 document.getElementById("demo-area-01-show").innerHTML = ([g3.pm25].join(''));
-        //                 document.getElementById("123").innerHTML = (['空氣品質：尚可'].join(''));
-        //                 document.getElementById("bgc").style.backgroundColor = '#48B04B';
-        //             } else if (g3.pm25 <= 35) {
-        //                 document.getElementById("demo-area-01-show").innerHTML = ([g3.pm25].join(''));
-        //                 document.getElementById("123").innerHTML = (['空氣品質：良好'].join(''));
-        //                 document.getElementById("bgc").style.backgroundColor = '#388E3C';
-        //             } else if (g3.pm25 <= 41) {
-        //                 document.getElementById("demo-area-01-show").innerHTML = ([g3.pm25].join(''));
-        //                 document.getElementById("123").innerHTML = (['空氣品質：尚可'].join(''));
-        //                 document.getElementById("bgc").style.backgroundColor = '#FCD700';
-        //             } else if (g3.pm25 <= 47) {
-        //                 document.getElementById("demo-area-01-show").innerHTML = ([g3.pm25].join(''));
-        //                 document.getElementById("123").innerHTML = (['空氣品質：尚可'].join(''));
-        //                 document.getElementById("bgc").style.backgroundColor = '#FFC107';
-        //             } else if (g3.pm25 <= 53) {
-        //                 document.getElementById("demo-area-01-show").innerHTML = ([g3.pm25].join(''));
-        //                 document.getElementById("123").innerHTML = (['空氣品質：尚可'].join(''));
-        //                 document.getElementById("bgc").style.backgroundColor = '#FF9800';
-        //             } else if (g3.pm25 <= 58) {
-        //                 document.getElementById("demo-area-01-show").innerHTML = ([g3.pm25].join(''));
-        //                 document.getElementById("123").innerHTML = (['空氣品質：不健康'].join(''));
-        //                 document.getElementById("bgc").style.backgroundColor = '#FF5252';
-        //             } else if (g3.pm25 <= 64) {
-        //                 document.getElementById("demo-area-01-show").innerHTML = ([g3.pm25].join(''));
-        //                 document.getElementById("123").innerHTML = (['空氣品質：不健康'].join(''));
-        //                 document.getElementById("bgc").style.backgroundColor = '#F44336';
-        //             } else if (g3.pm25 <= 70) {
-        //                 document.getElementById("demo-area-01-show").innerHTML = ([g3.pm25].join(''));
-        //                 document.getElementById("123").innerHTML = (['空氣品質：不健康'].join(''));
-        //                 document.getElementById("bgc").style.backgroundColor = '#D32F2F';
-        //             } else if (g3.pm25 > 71) {
-        //                 document.getElementById("demo-area-01-show").innerHTML = ([g3.pm25].join(''));
-        //                 document.getElementById("123").innerHTML = (['空氣品質：危害'].join(''));
-        //                 document.getElementById("bgc").style.backgroundColor = '#9D1CB2';
-        //             } else {
-        //                 document.getElementById("demo-area-01-show").innerHTML = ([g3.pm25].join(''));
-        //                 document.getElementById("123").innerHTML = (['空氣品質：危害'].join(''));
-        //                 document.getElementById("bgc").style.backgroundColor = '#9D1CB2';
-        //             }
-        //         }, 1000);
-        //     });
-        
+        });        
     }());
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
