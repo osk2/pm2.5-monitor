@@ -3,15 +3,22 @@ const app = new Vue({
   data: {
     currentPage: 'main',
     currentValue: null,
+    currentStatus: 0,
     descriptionTable: [
       '良好',
       '尚可',
       '不健康',
       '危害'
     ],
-    connectionStatus: [
+    statusDescriptions: [
       '未連線',
-      '連線中...'
+      '連線中...',
+      '已連線'
+    ],
+    buttonStatus: [
+      '連線',
+      '連線中...',
+      '重新連線'
     ],
     backgroundColorTable: [
       '#bbbbbb',
@@ -44,22 +51,47 @@ const app = new Vue({
       if (!this.deviceId) {
         return;
       }
+
+      const init = () => {
+        if (this.board) {
+          return;
+        }
+
+        this.currentStatus = 1;
+        boardReady(this.deviceId, (board) => {
+          let g3;
+
+          this.board = board;
+          this.currentStatus = 2;
+          board.systemReset();
+          board.samplingInterval = 250;
+          board.on('error', this.boardErrorHandler);
+          g3 = getG3(board, 14, 3);
+          g3.read((value) => {
+            this.currentValue = value.pm25;
+          }, 1000);
+        });
+      };
+
       this.switchPage('main');
       localStorage.deviceId = this.deviceId;
-      boardReady(this.deviceId, (board) => {
-        let g3;
 
-        board.systemReset();
-        board.samplingInterval = 250;
-        board.on('error', this.boardErrorHandler);
-        g3 = getG3(board, 14, 3);
-        g3.read((value) => {
-          this.currentValue = value.pm25;
-        }, 1000);
-      });
+      if (this.board) {
+        this.currentStatus = 0;
+
+        // Disconnect existed board before re-create new one
+        this.board.disconnect(() => {
+          this.board = null;
+          init();
+        });
+      } else {
+        init();
+      }
     },
     boardErrorHandler(err) {
       console.error(err);
+      this.currentStatus = 0;
+      this.board = null;
       this.resetStatus();
 
       // Try to reconnect for one time only
@@ -80,7 +112,7 @@ const app = new Vue({
       let description = '空氣品質：';
 
       if (!value && value !== 0) {
-        return this.connectionStatus[0];
+        return this.statusDescriptions[0];
       }
 
       // Loop through `valueLevels` to find out the range of current value,
