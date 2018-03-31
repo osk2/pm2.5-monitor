@@ -41,14 +41,15 @@
   }
 
   function processG3Data(self, data) {
-    var str = '';
+    var stringValue = data.slice(2).map(function (val) {
+      return String.fromCharCode(val);
+    }).join('');
 
-    for (var i = 2; i < data.length; i++) {
-      str += String.fromCharCode(data[i]);
-    }
-    str = str.split(',');
+    var value = stringValue.split(',').map(function (val) {
+      return parseInt(val);
+    });
     self._lastRecv = Date.now();
-    self.emit(G3Event.READ, parseInt(str[0]), parseInt(str[1]));
+    self.emit(G3Event.READ, value[0], value[1]);
   }
 
   G3.prototype = proto = Object.create(Module.prototype, {
