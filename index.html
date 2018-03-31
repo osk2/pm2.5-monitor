@@ -12,138 +12,142 @@
 
 <body>
   <div id="app">
-    <div class="page" v-if="currentPage === 'main'">
+    <transition>
+      <div class="page" v-if="currentPage === 'main'">
+        <div
+          class="container-fluid"
+          v-bind:style="{ backgroundColor: getBackgroundColorByValue(currentValue), height: '100%' }"
+        >
+          <div class="row">
+            <div class="col-xs-12 col-md-8 col-md-offset-2">
+              <img src="img/logo.png" class="logo">
+              <img src="img/set.png" class="img-btn setting" v-on:click="switchPage('setting')">
+              <div class="pm25-information">
+                <h1 class="pm25-title">PM2.5 濃度</h1>
+                <h1 class="pm25-value">
+                  {{ translateValue(currentValue) }}<small v-if="translateValue(currentValue) !== '--'">μg/m<sup>3</sup></small>
+                </h1>
+                <br>
+                <div class="pm25-description">{{ getDescriptionByValue(currentValue) }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </transition>
+
+    <transition>
       <div
-        class="container-fluid"
-        v-bind:style="{ backgroundColor: getBackgroundColorByValue(currentValue), height: '100%' }"
+        class="page"
+        style="background-color: #ffffff; overflow: scroll;"
+        v-if="currentPage === 'setting'"
       >
-        <div class="row">
-          <div class="col-xs-12 col-md-8 col-md-offset-2">
-            <img src="img/logo.png" class="logo">
-            <img src="img/set.png" class="img-btn setting" v-on:click="switchPage('setting')">
-            <div class="pm25-information">
-              <h1 class="pm25-title">PM2.5 濃度</h1>
-              <h1 class="pm25-value">
-                {{ translateValue(currentValue) }}<small v-if="translateValue(currentValue) !== '--'">μg/m<sup>3</sup></small>
-              </h1>
-              <br>
-              <div class="pm25-description">{{ getDescriptionByValue(currentValue) }}</div>
+        <div class="container-fluid setting">
+          <div class="row">
+            <div class="col-xs-12 col-md-8 col-md-offset-2">
+              <img src="img/back.png" class="img-btn back" v-on:click="switchPage('main')">
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      class="page"
-      style="background-color: #ffffff; overflow: scroll;"
-      v-if="currentPage === 'setting'"
-    >
-      <div class="container-fluid setting">
-        <div class="row">
-          <div class="col-xs-12 col-md-8 col-md-offset-2">
-            <img src="img/back.png" class="img-btn back" v-on:click="switchPage('main')">
-          </div>
-          <div class="setting-section col-xs-12 col-md-8 col-md-offset-2">
-            <h3>細懸浮微粒傳感器</h3>
-            <p>接收腳位 (TXD)：14</p>
-            <h4>Webduino Smart 開發板 ID</h4>
-            <input type="text" v-model="deviceId" autofocus>
-            <button v-on:click="createBoard">{{ buttonStatus[currentStatus] }}</button>
-          </div>
-          <div class="setting-section col-xs-12 col-md-8 col-md-offset-2">
-            <h3>細懸浮微粒指標對照表</h3>
-            <p style="margin-bottom: 0;">PM2.5 濃度及活動建議</p>
-            <div class="row level-table">
-              <div class="col-xs-12 level-content">
-                <div class="col-xs-4 level-value">
-                  <div v-bind:style="{ backgroundColor: backgroundColorTable[1] }">0~11 
-                    <sub class="hidden-xs">μg/m<sup>3</sup></sub>
+            <div class="setting-section col-xs-12 col-md-8 col-md-offset-2">
+              <h3>細懸浮微粒傳感器</h3>
+              <p>接收腳位 (TXD)：14</p>
+              <h4>Webduino Smart 開發板 ID</h4>
+              <input type="text" v-model="deviceId" autofocus>
+              <button v-on:click="createBoard">{{ buttonStatus[currentStatus] }}</button>
+            </div>
+            <div class="setting-section col-xs-12 col-md-8 col-md-offset-2">
+              <h3>細懸浮微粒指標對照表</h3>
+              <p style="margin-bottom: 0;">PM2.5 濃度及活動建議</p>
+              <div class="row level-table">
+                <div class="col-xs-12 level-content">
+                  <div class="col-xs-4 level-value">
+                    <div v-bind:style="{ backgroundColor: backgroundColorTable[1] }">0~11 
+                      <sub class="hidden-xs">μg/m<sup>3</sup></sub>
+                    </div>
+                    <div v-bind:style="{ backgroundColor: backgroundColorTable[2] }">12~23 
+                      <sub class="hidden-xs">μg/m<sup>3</sup></sub>
+                    </div>
+                    <div v-bind:style="{ backgroundColor: backgroundColorTable[3] }">24~35 
+                      <sub class="hidden-xs">μg/m<sup>3</sup></sub>
+                    </div>
                   </div>
-                  <div v-bind:style="{ backgroundColor: backgroundColorTable[2] }">12~23 
-                    <sub class="hidden-xs">μg/m<sup>3</sup></sub>
-                  </div>
-                  <div v-bind:style="{ backgroundColor: backgroundColorTable[3] }">24~35 
-                    <sub class="hidden-xs">μg/m<sup>3</sup></sub>
+                  <div class="col-xs-8 level-description">
+                    <div>
+                      <ul>
+                        <li>空氣品質：良好</li>
+                        <li>一般民眾：正常戶外活動</li>
+                        <li>敏感族群：正常戶外活動</li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
-                <div class="col-xs-8 level-description">
-                  <div>
-                    <ul>
-                      <li>空氣品質：良好</li>
-                      <li>一般民眾：正常戶外活動</li>
-                      <li>敏感族群：正常戶外活動</li>
-                    </ul>
+                <div class="col-xs-12 level-content">
+                  <div class="col-xs-4 level-value">
+                    <div v-bind:style="{ backgroundColor: backgroundColorTable[4] }">36~41 
+                      <sub class="hidden-xs">μg/m<sup>3</sup></sub>
+                    </div>
+                    <div v-bind:style="{ backgroundColor: backgroundColorTable[5] }">42~47 
+                      <sub class="hidden-xs">μg/m<sup>3</sup></sub>
+                    </div>
+                    <div v-bind:style="{ backgroundColor: backgroundColorTable[6] }">48~53 
+                      <sub class="hidden-xs">μg/m<sup>3</sup></sub>
+                    </div>
+                  </div>
+                  <div class="col-xs-8 level-description">
+                    <div>
+                      <ul>
+                        <li>空氣品質：尚可</li>
+                        <li>一般民眾：正常戶外活動</li>
+                        <li>敏感族群：減少體力消耗及戶外活動</li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="col-xs-12 level-content">
-                <div class="col-xs-4 level-value">
-                  <div v-bind:style="{ backgroundColor: backgroundColorTable[4] }">36~41 
-                    <sub class="hidden-xs">μg/m<sup>3</sup></sub>
+                <div class="col-xs-12 level-content">
+                  <div class="col-xs-4 level-value">
+                    <div v-bind:style="{ backgroundColor: backgroundColorTable[7] }">54~58 
+                      <sub class="hidden-xs">μg/m<sup>3</sup></sub>
+                    </div>
+                    <div v-bind:style="{ backgroundColor: backgroundColorTable[8] }">59~64 
+                      <sub class="hidden-xs">μg/m<sup>3</sup></sub>
+                    </div>
+                    <div v-bind:style="{ backgroundColor: backgroundColorTable[9] }">65~70 
+                      <sub class="hidden-xs">μg/m<sup>3</sup></sub>
+                    </div>
                   </div>
-                  <div v-bind:style="{ backgroundColor: backgroundColorTable[5] }">42~47 
-                    <sub class="hidden-xs">μg/m<sup>3</sup></sub>
-                  </div>
-                  <div v-bind:style="{ backgroundColor: backgroundColorTable[6] }">48~53 
-                    <sub class="hidden-xs">μg/m<sup>3</sup></sub>
-                  </div>
-                </div>
-                <div class="col-xs-8 level-description">
-                  <div>
-                    <ul>
-                      <li>空氣品質：尚可</li>
-                      <li>一般民眾：正常戶外活動</li>
-                      <li>敏感族群：減少體力消耗及戶外活動</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xs-12 level-content">
-                <div class="col-xs-4 level-value">
-                  <div v-bind:style="{ backgroundColor: backgroundColorTable[7] }">54~58 
-                    <sub class="hidden-xs">μg/m<sup>3</sup></sub>
-                  </div>
-                  <div v-bind:style="{ backgroundColor: backgroundColorTable[8] }">59~64 
-                    <sub class="hidden-xs">μg/m<sup>3</sup></sub>
-                  </div>
-                  <div v-bind:style="{ backgroundColor: backgroundColorTable[9] }">65~70 
-                    <sub class="hidden-xs">μg/m<sup>3</sup></sub>
+                  <div class="col-xs-8 level-description">
+                    <div>
+                      <ul>
+                        <li>空氣品質：不健康</li>
+                        <li>一般民眾：減少戶外活動</li>
+                        <li>敏感族群：減少體力消耗，特別是戶外活動</li>
+                        <li>氣喘族群：需增加使用吸入劑頻率</li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
-                <div class="col-xs-8 level-description">
-                  <div>
-                    <ul>
-                      <li>空氣品質：不健康</li>
-                      <li>一般民眾：減少戶外活動</li>
-                      <li>敏感族群：減少體力消耗，特別是戶外活動</li>
-                      <li>氣喘族群：需增加使用吸入劑頻率</li>
-                    </ul>
+                <div class="col-xs-12 level-content">
+                  <div class="col-xs-4 level-value">
+                    <div v-bind:style="{ backgroundColor: backgroundColorTable[10] }">71 
+                      <sub class="hidden-xs">μg/m<sup>3</sup></sub> 以上
+                    </div>
                   </div>
-                </div>
-              </div>
-              <div class="col-xs-12 level-content">
-                <div class="col-xs-4 level-value">
-                  <div v-bind:style="{ backgroundColor: backgroundColorTable[10] }">71 
-                    <sub class="hidden-xs">μg/m<sup>3</sup></sub> 以上
-                  </div>
-                </div>
-                <div class="col-xs-8 level-description">
-                  <div>
-                    <ul>
-                      <li>空氣品質：危害</li>
-                      <li>一般民眾：減少體力消耗，特別是戶外活動</li>
-                      <li>敏感族群：避免體力消耗及戶外活動</li>
-                      <li>氣喘族群：需增加使用吸入劑頻率</li>
-                    </ul>
+                  <div class="col-xs-8 level-description">
+                    <div>
+                      <ul>
+                        <li>空氣品質：危害</li>
+                        <li>一般民眾：減少體力消耗，特別是戶外活動</li>
+                        <li>敏感族群：避免體力消耗及戶外活動</li>
+                        <li>氣喘族群：需增加使用吸入劑頻率</li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          
         </div>
       </div>
-    </div>
+    </transition>
   </div>
   <script src="//cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

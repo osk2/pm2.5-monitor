@@ -215,3 +215,12 @@ html, body {
 .level-description li {
   margin-top: 5px;
 }
+
+
+.v-enter-active {
+  animation: zoomInDown 1s
+}
+
+.v-leave-active {
+  animation: zoomOutDown 1s;
+}
