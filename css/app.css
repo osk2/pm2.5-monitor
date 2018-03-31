@@ -94,8 +94,7 @@ html, body {
 
 .img-btn.back {
   width: 30px;
-  padding-top: 20px;
-  margin-bottom: 5px;
+  margin: 20px 0;
 }
 
 .container-fluid.setting input {
@@ -117,7 +116,7 @@ html, body {
 @media (max-width: 700px) {
   .container-fluid.setting ul {
     text-align: left;
-    font-size: .8em;
+    font-size: 1em;
   }
 
   .container-fluid.setting ul li {
@@ -136,7 +135,8 @@ html, body {
 }
 
 .setting-section {
-  margin: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   padding: 20px;
   background-color: #fcfcfc;
   border-radius: 10px;
