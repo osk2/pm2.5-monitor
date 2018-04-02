@@ -14,6 +14,11 @@ Major differences are shown as below
 ![Main Page](img/main-page.png)
 ![Setting Page](img/setting-page.png)
 
+# Prerequisite
+
+- Webduino Smart
+- G3 sensor (TXD on pin 14)
+
 # Demo
 
 [https://osk2.me/pm2.5](https://osk2.me/pm2.5)
