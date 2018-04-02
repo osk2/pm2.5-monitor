@@ -29,6 +29,14 @@ html, body {
 
 /* Style for Main Page */
 
+.page.main .container-fluid {
+  -webkit-transition: background-color 300ms ease-in;
+     -moz-transition: background-color 300ms ease-in;
+      -ms-transition: background-color 300ms ease-in;
+       -o-transition: background-color 300ms ease-in;
+          transition: background-color 300ms ease-in;
+}
+
 .logo {
   width: 70px;
   margin: 20px;

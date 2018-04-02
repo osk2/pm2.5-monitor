@@ -13,7 +13,7 @@
 <body>
   <div id="app">
     <transition>
-      <div class="page" v-if="currentPage === 'main'">
+      <div class="page main" v-if="currentPage === 'main'">
         <div
           class="container-fluid"
           v-bind:style="{ backgroundColor: getBackgroundColorByValue(currentValue), height: '100%' }"
@@ -38,7 +38,7 @@
 
     <transition>
       <div
-        class="page"
+        class="page setting"
         style="background-color: #ffffff; overflow: scroll;"
         v-if="currentPage === 'setting'"
       >
