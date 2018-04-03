@@ -34,13 +34,17 @@ const app = new Vue({
       '#9d1cb2'
     ],
     deviceId: '',
+    boardHistory: [],
     board: null
   },
   created() {
     // Create connection automatically if we have device ID already
-    if (localStorage.deviceId) {
-      this.deviceId = localStorage.deviceId;
+    if (localStorage.boardHistory) {
+      this.boardHistory = JSON.parse(localStorage.boardHistory);
+      this.deviceId = this.boardHistory[0];
       this.createBoard();
+    } else {
+      this.boardHistory = [];
     }
   },
   methods: {
@@ -57,6 +61,7 @@ const app = new Vue({
           return;
         }
 
+        this.saveToLocalStorage(this.deviceId);
         this.currentStatus = 1;
         boardReady(this.deviceId, (board) => {
           let g3;
@@ -98,6 +103,21 @@ const app = new Vue({
     resetStatus() {
       this.currentStatus = 0;
       this.currentValue = null;
+    },
+    quickSetting(id) {
+      this.deviceId = id;
+      this.createBoard();
+    },
+    saveToLocalStorage(id) {
+      if (this.boardHistory.indexOf(id) < 0) {
+        this.boardHistory.push(id);
+      } else {
+        // Reorder current board to first item
+        this.boardHistory = [this.deviceId].concat(this.boardHistory.filter((val) => {
+          return val !== this.deviceId;
+        }));
+      }
+      localStorage.boardHistory = JSON.stringify(this.boardHistory);
     },
     translateValue(value) {
       if (!value && value !== 0) {

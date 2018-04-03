@@ -52,7 +52,17 @@
               <p>接收腳位 (TXD)：14</p>
               <h4>Webduino Smart 開發板 ID</h4>
               <input type="text" v-model="deviceId" autofocus>
-              <button v-on:click="createBoard">{{ buttonStatus[currentStatus] }}</button>
+              <div v-if="boardHistory.length > 1">
+                <button
+                  v-for="board in boardHistory"
+                  v-on:click="quickSetting(board)"
+                  class="btn btn-grey board-history"
+                  :key="board"
+                >
+                  {{ board }}
+                </button>
+              </div>
+              <button class="btn btn-grey btn-block" v-on:click="createBoard">{{ buttonStatus[currentStatus] }}</button>
             </div>
             <div class="setting-section col-xs-12 col-md-8 col-md-offset-2">
               <h3>細懸浮微粒指標對照表</h3>
