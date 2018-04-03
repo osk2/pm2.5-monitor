@@ -77,8 +77,7 @@ const app = new Vue({
       localStorage.deviceId = this.deviceId;
 
       if (this.board) {
-        this.currentStatus = 0;
-
+        this.resetStatus();
         // Disconnect existed board before re-create new one
         this.board.disconnect(() => {
           this.board = null;
@@ -90,7 +89,6 @@ const app = new Vue({
     },
     boardErrorHandler(err) {
       console.error(err);
-      this.currentStatus = 0;
       this.board = null;
       this.resetStatus();
 
@@ -98,6 +96,7 @@ const app = new Vue({
       this.createBoard();
     },
     resetStatus() {
+      this.currentStatus = 0;
       this.currentValue = null;
     },
     translateValue(value) {
