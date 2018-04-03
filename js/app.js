@@ -44,6 +44,7 @@ const app = new Vue({
       this.deviceId = this.boardHistory[0];
       this.createBoard();
     } else {
+      localStorage.boardHistory = [];
       this.boardHistory = [];
     }
   },
