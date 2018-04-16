@@ -139,7 +139,7 @@ const app = new Vue({
       // and return corresponding description
       for (let i = 0; i <= valueLevels.length; i++) {
         if (value <= valueLevels[i]) {
-          description += this.descriptionTable[0];
+          description += this.descriptionTable[i];
           return description;
         }
       }
